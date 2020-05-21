@@ -1,7 +1,6 @@
 import { parse as parseRedisInfo } from 'redis-info'
 import { RequestHandler, Request } from 'express'
 import { Job } from 'bull'
-import { Job as JobMq } from 'bullmq'
 
 import * as api from '../@types/api'
 import * as app from '../@types/app'
@@ -39,7 +38,7 @@ const getStats = async ({
   return validMetrics
 }
 
-const formatJob = (job: Job | JobMq): app.AppJob => {
+const formatJob = (job: Job): app.AppJob => {
   const jobProps = job.toJSON()
 
   return {
@@ -83,9 +82,9 @@ const getDataForQueues = async (
 
   const queues: app.AppQueue[] = await Promise.all(
     pairs.map(async ([name, { queue }]) => {
-      const counts = await queue.getJobCounts(...statuses)
+      const counts = await queue.getJobCountByTypes(statuses)
       const status = query[name] === 'latest' ? statuses : query[name]
-      const jobs: (Job | JobMq)[] = await queue.getJobs(status, 0, 10)
+      const jobs: Job[] = await queue.getJobs(status, 0, 10)
 
       return {
         name,

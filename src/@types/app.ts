@@ -1,9 +1,8 @@
 import { Status } from '../ui/components/constants'
-import { Queue, JobOptions } from 'bull'
-import { Queue as QueueMq, JobsOptions, Job as JobMq } from 'bullmq'
+import { Queue, JobOptions, Job } from 'bull'
 
 export interface BullBoardQueue {
-  queue: Queue | QueueMq
+  queue: Queue
 }
 
 export interface BullBoardQueues {
@@ -24,13 +23,13 @@ export interface AppJob {
   timestamp: number | null
   processedOn: number | null
   finishedOn: number | null
-  progress: JobMq['progress']
-  attempts: JobMq['attemptsMade']
-  failedReason: JobMq['failedReason']
+  progress: number
+  attempts: Job['attemptsMade']
+  failedReason: any
   stacktrace: string[] | null
-  opts: JobsOptions | JobOptions
-  data: JobMq['data']
-  name: JobMq['name']
+  opts: JobOptions
+  data: Job['data']
+  name: Job['name']
   delay: number | undefined
 }
 
