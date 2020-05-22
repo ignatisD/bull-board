@@ -24,7 +24,8 @@ const getStats = async ({ queue, }) => {
     return validMetrics;
 };
 const formatJob = (job) => {
-    const jobProps = job.toJSON();
+    job = job || {};
+    const jobProps = "toJSON" in job ? job.toJSON() : { opts: {} };
     return {
         id: jobProps.id,
         timestamp: jobProps.timestamp,
@@ -76,7 +77,7 @@ const getDataForQueues = async (bullBoardQueues, req) => {
         return {
             name,
             counts: counts,
-            jobs: jobs.map(formatJob),
+            jobs: jobs.map(formatJob).filter(j => !!j.id),
         };
     }));
     const stats = await getStats(pairs[0][1]);

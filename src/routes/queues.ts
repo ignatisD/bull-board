@@ -39,7 +39,8 @@ const getStats = async ({
 }
 
 const formatJob = (job: Job): app.AppJob => {
-  const jobProps = job.toJSON()
+  job = job || {};
+  const jobProps = "toJSON" in job ? job.toJSON() : <any>{opts: {}};
 
   return {
     id: jobProps.id,
@@ -101,7 +102,7 @@ const getDataForQueues = async (
       return {
         name,
         counts: counts,
-        jobs: jobs.map(formatJob),
+        jobs: jobs.map(formatJob).filter(j => !!j.id),
       }
     }),
   )
