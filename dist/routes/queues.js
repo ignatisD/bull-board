@@ -57,7 +57,20 @@ const getDataForQueues = async (bullBoardQueues, req) => {
         };
     }
     const queues = await Promise.all(pairs.map(async ([name, { queue }]) => {
-        const counts = await queue.getJobCountByTypes(statuses);
+        const counts = {
+            'latest': 0,
+            'active': 0,
+            'completed': 0,
+            'delayed': 0,
+            'failed': 0,
+            'waiting': 0,
+            'paused': 0,
+        };
+        await Promise.all(statuses.map(status => {
+            return queue.getJobCountByTypes(status).then(num => {
+                counts[status] = num || 0;
+            });
+        }));
         const status = query[name] === 'latest' ? statuses : query[name];
         const jobs = await queue.getJobs(status, 0, 10);
         return {
