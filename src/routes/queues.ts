@@ -1,6 +1,6 @@
 import { parse as parseRedisInfo } from 'redis-info'
 import { RequestHandler, Request } from 'express'
-import { Job } from 'bull'
+import { Job, JobStatus } from 'bull'
 
 import * as api from '../@types/api'
 import * as app from '../@types/app'
@@ -57,12 +57,11 @@ const formatJob = (job: Job): app.AppJob => {
   }
 }
 
-const statuses: Status[] = [
+const statuses: JobStatus[] = [
   'active',
   'completed',
   'delayed',
   'failed',
-  'paused',
   'waiting',
 ]
 

@@ -45,7 +45,6 @@ const statuses = [
     'completed',
     'delayed',
     'failed',
-    'paused',
     'waiting',
 ];
 const getDataForQueues = async (bullBoardQueues, req) => {

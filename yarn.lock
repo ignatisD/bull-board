@@ -1143,10 +1143,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bull@^3.12.1":
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.12.1.tgz#dcf1ac40c4314a3dfa1a4a12662ce7201b2e4efa"
-  integrity sha512-mn1xmqKBNxllUGuOSBDOvsRpLHPDTSOsGQiHTv6t1gvGtIc/L1IFsN3YTmwf3AZenKzUcBQDGFLrCKt+abhrvQ==
+"@types/bull@^3.13.0":
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.13.0.tgz#d49b16010efcbb8a487161e4d78b96d1c235fbcb"
+  integrity sha512-WvXOlhun1xLyE+KC2pyoWZMn9sWKX2nLd+8wjSOh3VVz0+QsKLLpGFuhw1DjaFfiOdT8ZIxCuAUpdFlEZRPxOg==
   dependencies:
     "@types/ioredis" "*"
 
@@ -2271,10 +2271,10 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
-bull@^3.13.0:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/bull/-/bull-3.13.0.tgz#232935f9a5c0c87be6eb2aa95e434ff115bacd7a"
-  integrity sha512-nP8ICMNHGYDNt6cgPqBPm90n57xA+/Om2wI2EGEOIJtWutjrYt8JAWiiFYjZKrly9UkKlrfG9qgOCwFFdS5xaw==
+bull@^3.14.0:
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/bull/-/bull-3.14.0.tgz#75fcfa17e829c860de0d51b79569636845232715"
+  integrity sha512-qQrytpqbE6Zjl2zkvlqS1kUwWLJHpDOhhuGb34+5atPeZrd8DlxkAbxnLnaMB1XQX1iXPzFVpDOUOIIROYKp6Q==
   dependencies:
     cron-parser "^2.13.0"
     debuglog "^1.0.0"
