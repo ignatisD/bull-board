@@ -39,8 +39,8 @@ const getStats = async ({
 }
 
 const formatJob = (job: Job): app.AppJob => {
-  job = job || {};
-  const jobProps = "toJSON" in job ? job.toJSON() : <any>{opts: {}};
+  job = job || <any>{opts: {}};
+  const jobProps = "toJSON" in job ? job.toJSON() : <any>{};
 
   return {
     id: jobProps.id,

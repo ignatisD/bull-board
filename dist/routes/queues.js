@@ -24,8 +24,8 @@ const getStats = async ({ queue, }) => {
     return validMetrics;
 };
 const formatJob = (job) => {
-    job = job || {};
-    const jobProps = "toJSON" in job ? job.toJSON() : { opts: {} };
+    job = job || { opts: {} };
+    const jobProps = "toJSON" in job ? job.toJSON() : {};
     return {
         id: jobProps.id,
         timestamp: jobProps.timestamp,
