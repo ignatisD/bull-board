@@ -81,16 +81,18 @@ const getDataForQueues = async (
 
   const queues: app.AppQueue[] = await Promise.all(
     pairs.map(async ([name, { queue }]) => {
-      const counts: Record<JobStatus, number> = {
+      const counts: Record<Status, number> = {
+        'latest': 0,
         'active': 0,
         'completed': 0,
         'delayed': 0,
         'failed': 0,
         'waiting': 0,
+        'paused': 0,
       };
       await Promise.all(statuses.map(status => {
         return queue.getJobCountByTypes(status).then(num => {
-          counts[status] = (num as any);
+          counts[status] = (num as any) || 0;
         })
       }))
       const status = query[name] === 'latest' ? statuses : query[name]
@@ -98,7 +100,7 @@ const getDataForQueues = async (
 
       return {
         name,
-        counts: counts as Record<Status, number>,
+        counts: counts,
         jobs: jobs.map(formatJob),
       }
     }),
